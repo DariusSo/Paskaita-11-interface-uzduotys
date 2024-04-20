@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -191,6 +188,89 @@ public class Main {
             }
         };
         //8 Uzduotis
+        List<Integer> converterList = new ArrayList<>();
+        List<Double> celciusList = new ArrayList<>();
+        List<Double> metersList = new ArrayList<>();
+        for (int i = 0; i < 10; i++){
+            converterList.add(rand.nextInt(1, 100));
+        }
+        for (Integer i : converterList){
+            celciusList.add(Double.valueOf(String.format("%.1f", tempFToC.convert(i))));
+            metersList.add(Double.valueOf(String.format("%.2f", tempFToC.convert(i))));
+        }
+        System.out.println(celciusList);
+        System.out.println(metersList);
+
+        //9 Uzduotis
+        List<String> stringList = new ArrayList<>();
+
+        SortText rusiavimas = new SortText() {
+            @Override
+            public List<String> sort(List<String> list) {
+                Collections.sort(list);
+                return list;
+            }
+        };
+        stringList.add("Pelyte");
+        stringList.add("Ekranas");
+        stringList.add("Vaizdo plokste");
+        stringList.add("Klaviatura");
+        stringList.add("RAM");
+        System.out.println(rusiavimas.sort(stringList));
+
+        //10 Uzduotis
+        SortInteger integerList = new SortInteger() {
+            @Override
+            public List<Integer> sort(List<Integer> list) {
+                Collections.sort(list);
+                return list;
+            }
+        };
+        List<Integer> integerList2 = new ArrayList<>();
+        for (int i = 0; i < 20; i++){
+            integerList2.add(random.nextInt(1, 100));
+        }
+        System.out.println(integerList.sort(integerList2));
+
+        Transformer transformer = new Transformer() {
+            @Override
+            public List<String> transform(List<String> list) {
+                for(int i = 0; i < list.size(); i++){
+                    if (list.get(i).equals("")){
+                        list.remove(list.get(i));
+                    }
+                }
+                return list;
+            }
+        };
+        List<String> emptyStrings = new ArrayList<>();
+        emptyStrings.add("Bulves");
+        emptyStrings.add("");
+        emptyStrings.add("Keciupas");
+        emptyStrings.add("");
+        emptyStrings.add("Apelsinai");
+        emptyStrings.add("");
+        emptyStrings.add("Sultys");
+        emptyStrings.add("");
+        emptyStrings.add("Pupeles");
+        emptyStrings.add("");
+
+        System.out.println(transformer.transform(emptyStrings));
+
+        //12 Uzduotis
+
+        List<StringOperations> stringOperacijos = new ArrayList<>();
+        stringOperacijos.add(uppercaseWords);
+        stringOperacijos.add(lowercaseWords);
+        stringOperacijos.add(reversedWords);
+
+        performActions("BaNanIniS", stringOperacijos);
 
     }
+    public static void performActions(String text, List<StringOperations> list){
+        for(StringOperations s : list){
+            System.out.println(s.stringManipulate(text));
+        }
+    }
+
 }
